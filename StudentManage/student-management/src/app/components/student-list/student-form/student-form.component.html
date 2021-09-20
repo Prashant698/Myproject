@@ -1,0 +1,289 @@
+<div class="row bg-info" style="margin-left: 1px; width: 1550px;" >
+    <div class="col-md-12"> 
+        <div class="card-header bg-info"><h4>{{ formName }}</h4></div>
+    </div>
+</div>
+<div class="card w-75" *ngIf="studentForm">
+   
+    <form [formGroup]="studentForm" (ngSubmit)="formSubmitHandler()" class="card-body" enctype="multipart/form-data">
+      
+        <div class="form-group row">
+            <div class="col-md-12 d-flex flex-column align-items-center">
+                <div class="rounded-circle p-1 bg-black d-flex" style="width: 150px; height: 150px">
+                    <img [src]="imgUrl" alt="" class="img-fluid rounded-circle mx-auto" width="150px"/>
+                </div>
+                <div class="custom-file my-3 w-50">
+                    <input
+                        type="file"
+                        class="custom-file-input"
+                        [class.is-invalid]="studentForm.get('picture').invalid"
+                        [class.is-valid]="studentForm.get('picture').valid"
+                        id="customFile"
+                        accept="image/*"
+                        (change)="showPreview($event)"
+                    />
+                    <input type="hidden" name="fileHidden" formControlName="picture" />
+                    <!-- Validation Field ^ -->
+                    <label class="custom-file-label" for="customFile">{{
+                    imgFileName
+                    }}</label>
+                    <!-- error message file input -->
+                    <div class="invalid-feedback">Please Choose An Image !!</div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="col-form-label">First Name</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        formControlName="first_name"
+                        [class.is-invalid]="
+                        studentForm.get('first_name').invalid &&
+                        (studentForm.get('first_name').touched ||
+                        studentForm.get('first_name').dirty)
+                        "
+                        [class.is-valid]="studentForm.get('first_name').valid"
+                        class="form-control"
+                    />
+                    <!-- error message for first-name -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('first_name').getError('pattern')"
+                        >Please enter only text</span
+                        >
+                        <span *ngIf="studentForm.get('first_name').getError('required')"
+                        >This field is required !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="col-form-label">Last Name</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        formControlName="last_name"
+                        [class.is-invalid]="
+                        studentForm.get('last_name').invalid &&
+                        (studentForm.get('last_name').touched ||
+                        studentForm.get('last_name').dirty)
+                        "
+                        [class.is-valid]="studentForm.get('last_name').valid"
+                        class="form-control"
+                    /><!-- error message for last-name -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('last_name').getError('pattern')"
+                        >Please enter only text</span
+                        >
+                        <span *ngIf="studentForm.get('last_name').getError('required')"
+                        >This field is required !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label">Grade</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-star"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        formControlName="grade"
+                        [class.is-invalid]="
+                        studentForm.get('grade').invalid &&
+                        (studentForm.get('grade').touched ||
+                        studentForm.get('grade').dirty)
+                        "
+                        [class.is-valid]="studentForm.get('grade').valid"
+                        class="form-control"
+                    />
+                    <!-- error message for grade -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('grade').getError('pattern')"
+                        >Please enter only text one character which is in
+                        [A,B,C,D,E]</span
+                        >
+                        <span *ngIf="studentForm.get('grade').getError('required')"
+                        >This field is required !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label">Date Of Birth</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"
+                        ><i class="fa fa-birthday-cake"></i
+                        ></span>
+                    </div>
+                    <input
+                        type="date"
+                        formControlName="DOB"
+                        [class.is-invalid]="
+                        studentForm.get('DOB').invalid &&
+                        (studentForm.get('DOB').touched || studentForm.get('DOB').dirty)
+                        "
+                        [class.is-valid]="studentForm.get('DOB').valid"
+                        class="form-control"
+                    />
+                    <!-- error message for DOB -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('DOB').getError('required')"
+                        >This field is required !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label mr-2">Gender</label>
+                <div class="input-group mt-1">
+                    <div class="form-check form-check-inline">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        formControlName="gender"
+                        name="gender"
+                        value="M"
+                        checked="true"
+                        />
+                        <label class="form-check-label">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        formControlName="gender"
+                        name="gender"
+                        value="F"
+                        />
+                        <label class="form-check-label">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="col-form-label">Email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                    <input
+                    type="email"
+                    formControlName="email"
+                    [class.is-invalid]="
+                    studentForm.get('email').invalid &&
+                    (studentForm.get('email').touched ||
+                    studentForm.get('email').dirty)
+                    "
+                    [class.is-valid]="studentForm.get('email').valid"
+                    class="form-control"
+                    />
+                    <!-- error message for email -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('email').getError('required')"
+                        >This field is required !!</span
+                        >
+                        <span *ngIf="studentForm.get('email').getError('email')"
+                        >Enter valid email !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="col-form-label">Phone</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <input
+                    type="phone"
+                    formControlName="phone"
+                    class="form-control"
+                    [class.is-invalid]="
+                    studentForm.get('phone').invalid &&
+                    (studentForm.get('phone').touched ||
+                    studentForm.get('phone').dirty)
+                    "
+                    [class.is-valid]="studentForm.get('phone').valid"
+                    />
+                    <!-- error message for phone -->
+                    <div class="invalid-feedback">
+                        <span *ngIf="studentForm.get('phone').getError('required')"
+                        >This field is required !!</span
+                        >
+                        <span *ngIf="studentForm.get('phone').getError('pattern')"
+                        >Enter valid number !!</span
+                        >
+                    </div>
+                    <div class="valid-feedback">Valid !!</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="col-form-label">Address</label>
+                <textarea
+                    id="textarea-input"
+                    formControlName="address"
+                    rows="5"
+                    class="form-control"
+                    [class.is-invalid]="
+                    studentForm.get('address').invalid &&
+                    (studentForm.get('address').touched ||
+                    studentForm.get('address').dirty)
+                    "
+                    [class.is-valid]="studentForm.get('address').valid"
+                ></textarea>
+                <!-- error message for address -->
+                <div class="invalid-feedback">
+                    <span *ngIf="studentForm.get('address').getError('required')"
+                    >This field is required !!</span
+                    >
+                    <span *ngIf="studentForm.get('address').getError('minlength')"
+                    >Address should at least
+                    {{ studentForm.get("address").getError("minlength").actualLength }}
+                    /{{
+                    studentForm.get("address").getError("minlength").requiredLength
+                    }}
+                    characters !!</span
+                    >
+                </div>
+                <div class="valid-feedback">Valid !!</div>
+            </div>
+        </div>
+        <button
+            class="btn"
+            type="submit"
+            [class.btn-info]="studentForm.invalid"
+            [class.btn-success]="studentForm.valid"
+            [disabled]="studentForm.invalid || studentForm.pristine"
+        >
+        <i
+            *ngIf="studentForm.valid"
+            class="fa fa-check-circle mr-2"
+            aria-hidden="true"
+        >
+        </i>
+        <i
+            *ngIf="studentForm.invalid"
+            class="fa fa-times-circle mr-2"
+            aria-hidden="true"
+        >
+        </i>
+        {{ btnText }}
+        </button>
+        <button class="btn btn-danger" type="reset">
+            <i class="fa fa-times-circle mr-2" aria-hidden="true"></i>Reset
+        </button>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "stutent-management-server",
+  "version": "1.0.0",
+  "description": "student management server with mysql database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "student-management"
+  ],
+  "author": "Sourabh Kanwade",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.3",
+    "mysql": "^2.18.1"
+  }
+}

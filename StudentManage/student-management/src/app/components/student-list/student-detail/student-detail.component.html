@@ -1,0 +1,97 @@
+<body>
+    <div class="row ">
+        <div class="col-md-12"> 
+            <div class="card-header bg-info"><h4>Student Details</h4></div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="card" id="imgcard">
+                <div class="card-body">
+                    <img class="card-img-top img-fluid bg-warning" src="{{ student.picture }}" alt="userImage" style="width: 300px; height: 450px;"/>
+                </div>
+            </div>
+            <div class="card" id="detail">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12" style="font-weight: bold;">
+                            <h3>{{ student.first_name | titlecase }}&nbsp;{{student.last_name | titlecase}}</h3>
+                        </div>
+                    </div><br>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-user-circle mr-2" aria-hidden="true"></i>First Name
+                        </div>
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>Last Name
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 ">
+                            <input type="text" value="{{ student.first_name | titlecase }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.last_name | titlecase }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-birthday-cake mr-2" aria-hidden="true"></i>Birthday
+                        </div>
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-address-card-o mr-2" aria-hidden="true"></i>Address
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.DOB | date }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.address }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-star-o mr-2" aria-hidden="true"></i>Grade
+                        </div>
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-envelope-o mr-2" aria-hidden="true"></i>Email
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.grade }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.email }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-phone mr-2" aria-hidden="true"></i>Phone
+                        </div>
+                        <div class="col-md-6 font-weight-bold">
+                            <i class="fa fa-hashtag mr-2" aria-hidden="true"></i>Gender
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" value="{{ student.phone }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                           <span style="margin-left: 40px;"> {{ student.gender == "M" ? "Male" : "Female" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let alert of alerts">
+    <alert
+    [type]="alert.type"
+    [dismissOnTimeout]="alert.timeout"
+    (onClosed)="onClosed(alert)"
+    >{{ alert.msg }}</alert
+    >
+    </div>
+</body>
+

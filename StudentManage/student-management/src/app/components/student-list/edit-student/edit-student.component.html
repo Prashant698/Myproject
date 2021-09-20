@@ -1,0 +1,17 @@
+<app-student-form
+  formName="Edit Student"
+  btnText="Update"
+  [studentId]="studentId"
+  (onStudentFormSubmit)="updateStudent($event)"
+></app-student-form>
+<div
+  *ngFor="let alert of alerts"
+  style="position: absolute; bottom: 0; width: 70%"
+>
+  <alert
+    [type]="alert.type"
+    [dismissOnTimeout]="alert.timeout"
+    (onClosed)="onClosed(alert)"
+    >{{ alert.msg }}</alert
+  >
+</div>
