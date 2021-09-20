@@ -1,1 +1,1 @@
-# Myproject
+# Student Management System
